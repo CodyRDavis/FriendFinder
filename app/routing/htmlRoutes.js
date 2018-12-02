@@ -9,6 +9,7 @@ module.exports = {
             res.sendFile('/app/public/index.html', { root: "./"});
         });
         app.get('/survey/:name', function(req,res){
+            console.log(friends);
             res.status(200).send(friends);
         });
     } 

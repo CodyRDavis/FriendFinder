@@ -1,8 +1,6 @@
-let friends = [
+let friends =[
     {
-        "name": "Pikachu",
-        "score": 10
+        name: "Pikachu"
     }
 ]
-
-module.export = friends;
+module.exports = friends;
