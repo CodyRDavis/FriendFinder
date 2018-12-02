@@ -1,30 +1,15 @@
 // Dependencies
 // ===========================================================
 const express = require("express");
-const router = express.Router();
-const fs = require("fs");
+const html = require("./app/routing/htmlRoutes");
 
 const app = express();
 const PORT = 3000;
 
 // Routes
 // ===========================================================
+html.route(app);
 
-app.get("/survey", function(req, res) {
-  renderPage(req.url, res);
-});
-
-app.use(function(req, res){
-    renderPage("/index", res);
-});
-
-function renderPage(path, res){
-    pagePath = (__dirname + "/app/public" + path+".html");
-    fs.readFile(pagePath, function(err, data){
-        res.sendFile(pagePath);
-    });
-    console.log ("path: "+path);
-}
 // Listener
 // ===========================================================
 app.listen(PORT, function() {
