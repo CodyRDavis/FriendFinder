@@ -1,4 +1,4 @@
-let friends = require('../data/friends');
+const friends = require('../data/friends');
 const express = require('express');
 const router = express.Router();
 
