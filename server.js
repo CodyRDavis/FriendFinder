@@ -1,14 +1,16 @@
 // Dependencies
 // ===========================================================
 const express = require("express");
-const html = require("./app/routing/htmlRoutes");
+const htmlRoutes = require("./app/routing/htmlRoutes");
+const apiRoutes = require('./app/routing/apiRoutes');
 
 const app = express();
 const PORT = 3000;
 
 // Routes
 // ===========================================================
-html.route(app);
+app.use(apiRoutes);
+app.use(htmlRoutes);
 
 // Listener
 // ===========================================================
