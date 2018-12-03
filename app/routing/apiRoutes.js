@@ -8,8 +8,12 @@ router.get('/api/:name', function(req, res){
 });
 
 //route to add new friend
-router.post('/api/:name', function(req, res){
-    res.send("");
+//
+router.post('/api', function(req, res){
+    //insert new friend into friends.
+    console.log(JSON.stringify(req.body));
+    console.log(friends);
+    res.send(req.body);
 });
 
 //route to update existing friend
