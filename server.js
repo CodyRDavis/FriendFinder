@@ -9,7 +9,7 @@ const PORT = 3000;
 
 // Routes
 // ===========================================================
-app.use(apiRoutes);
+app.use("/api/", apiRoutes);
 app.use(htmlRoutes);
 
 // Listener
