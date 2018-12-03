@@ -3,13 +3,13 @@ const express = require('express');
 const router = express.Router();
 
 //route to get back the friends obj
-router.get('/api', function(req, res){
+router.get('/', function(req, res){
     res.send(friends);
 });
 
 //route to add new friend
 //
-router.post('/api', function(req, res){
+router.post('/', function(req, res){
 
     //getting current users scores for easy refrence
     currentUserScores = []
@@ -19,7 +19,10 @@ router.post('/api', function(req, res){
     console.log ("current user's scores: ", currentUserScores);
 
     //comparing scores to find best match
-    bestMatch = []
+    bestMatch = {
+        "name": "",
+        "scoreDiff": 999
+    };
     for (let i =0; i<friends.length; i++){
         console.log (friends[i]);
         let total = 0;
@@ -27,9 +30,14 @@ router.post('/api', function(req, res){
             console.log ("Comparing scores:", j)
             total += Math.abs(currentUserScores[i] - friends[i].score[j]);
         }
-        bestMatch.push(total);
+        
+        //checking to see who is the lowest difference
+        if (total < bestMatch.scoreDiff){
+            bestMatch.name = friends[i].name;
+            bestMatch.scoreDiff = total;
+        }
     }
-    console.log("Best Matches: " + bestMatch);
+    console.log("Best Matches: ",bestMatch);
 
     friends.push(req.body);
     res.send(friends);
