@@ -12,8 +12,8 @@ router.get('/api/:name', function(req, res){
 router.post('/api', function(req, res){
     //insert new friend into friends.
     console.log(JSON.stringify(req.body));
-    console.log(friends);
-    res.send(req.body);
+    friends.push(req.body);
+    res.send(friends);
 });
 
 //route to update existing friend
