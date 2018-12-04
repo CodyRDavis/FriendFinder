@@ -9,18 +9,42 @@ router.get('/', function(req, res){
 
 router.get('/:id', function(req,res){
     const userId = req.params.id;
-    let user = friends[0];
-    let bestMatch = friends[0];
+    let user = "";
+    let match = "";
 
+    console.log("getting results for: ", friends[userId]);
     //getting ID's stats
+    user = friends[userId];
+
+    //setting up the first match
+    if (userId == 0){match = friends[1]}
+    else { match = friends[0]}
+
+    console.log ("line 23: ", match);
+    //checking to see of all friends which is the closest match
     for(let i = 0; i<friends.length; i++){
-        if(friends[i].id === userId){
-            user = friends[i];
-            break;
+        if(i != userId){
+            console.log(friends[i]);
+            var total = 0;
+            var matchTotal = 0;
+            //comparing user to current possible friend
+            for(let j = 0; j < friends[i].score.length; j++){
+                //console.log(friends[i].score[j]);
+                total += Math.abs(friends[i].score[j] - user.score[j]);
+                matchTotal += Math.abs(match.score[j] - user.score[j]);
+            }
+            console.log(total);
+            console.log(match.name +" MatchTotal: " + matchTotal);
+
+            //if found now closer match, setting match to it.
+            if(total < matchTotal){
+                match  = friends[i];
+                console.log("found a better match");
+            }
         }
     }
-
-    res.send(bestMatch);
+    //sending the closest match!
+    res.send(match);
 });
 
 //route to add new friend
