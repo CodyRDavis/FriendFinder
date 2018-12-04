@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // Routes
 // ===========================================================
-app.use("/api/", apiRoutes);
+app.use("/api", apiRoutes);
 app.use(htmlRoutes);
 
 // Listener
